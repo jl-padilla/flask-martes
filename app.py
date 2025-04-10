@@ -13,9 +13,22 @@ app = Flask(__name__)
 app.config['DEBUG'] = True
 
 # Enruta la landing page (endpoint /)
+# @app.route("/", methods=["GET"])
+# def hello(): # Ligado al endopoint "/" o sea el home, con el método GET
+#     return "Bienvenido a mi API del modelo advertising"
 @app.route("/", methods=["GET"])
-def hello(): # Ligado al endopoint "/" o sea el home, con el método GET
-    return "Bienvenido a mi API del modelo advertising"
+def hello(): 
+    return """
+    <h1>Bienvenido a mi API del modelo advertising</h1>
+    <p>Opciones disponibles:</p>
+    <ul>
+        <li><strong>/</strong> - Página inicial.</li>
+        <li><strong>/api/v1/predict</strong> - Endpoint para realizar predicciones. <br> Usa parámetros 'tv', 'radio' y 'newspaper' en la URL para predecir.</li>
+        <li><strong>/api/v1/retrain</strong> - Endpoint para reentrenar el modelo con datos nuevos. <br> Busca automáticamente el archivo 'Advertising_new.csv' en la carpeta 'data'.</li>
+    </ul>
+    <p>Para más información, accede a cada endpoint según corresponda.</p>
+    """
+
 # Enruta la funcion al endpoint /api/v1/predict
 @app.route("/api/v1/predict", methods=["GET"])
 def predict(): # Ligado al endpoint '/api/v1/predict', con el método GET 
